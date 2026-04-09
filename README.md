@@ -1,65 +1,22 @@
 # Mastra Minimal Reproduction
 
-This repository is a stripped-down Mastra app intended to reproduce a bug with the least amount of code possible, following Mastra's [minimal reproduction guidance](https://github.com/mastra-ai/mastra/blob/main/CONTRIBUTING.md#minimal-reproduction).
+This repro shows that TypeScript accepts an invalid `AgentConfig.tools` value that should be rejected.
 
-## Status
+The invalid case is in [src/tools-runtime-crash.test.ts](/Users/abraham/Documents/GitHub/mastra-bug-agent-tools/src/tools-runtime-crash.test.ts), where a static `tools` map contains `myTool: () => realTool`. That nested resolver function should be a type error, but it compiles.
 
-This repo is scaffolded and ready for the issue-specific reproduction code.
-
-Update the placeholders below before filing the upstream GitHub issue:
-
-- Replace the code in `src/mastra` with only the logic required to trigger the bug.
-- Fill in the expected and actual behavior sections.
-- Add the exact command, request, or action that triggers the failure.
-- If the issue needs extra Mastra packages or external services, document only those.
-
-## Expected Behavior
-
-[Describe what should happen.]
-
-## Actual Behavior
-
-[Describe the error, incorrect output, or unexpected behavior.]
-
-## Reproduction Steps
-
-1. Install dependencies:
+## Reproduction
 
 ```sh
 npm install
+npx tsc --noEmit
 ```
 
-2. Configure environment variables:
+Expected: TypeScript reports an error for `myTool: () => realTool`.
+
+Actual: `tsc` exits successfully with no type error.
+
+To show that an actual runtime crash occurs when using the invalid config, run:
 
 ```sh
-cp .env.example .env
+npm run test
 ```
-
-3. Start the Mastra dev server:
-
-```sh
-npm run dev
-```
-
-4. Trigger the issue:
-
-```text
-[Document the exact command, HTTP request, UI action, or tool invocation here.]
-```
-
-## Project Structure
-
-- `src/mastra/index.ts`: minimal Mastra entrypoint
-- `.env.example`: example environment variables
-
-## Environment
-
-- Node.js: `v25.8.1`
-- Package manager: `npm`
-- OS: `macOS / Darwin 25.3.0 arm64`
-
-## Notes
-
-- This repo intentionally starts with the smallest possible Mastra app.
-- Add only the Mastra packages and configuration needed to reproduce the issue.
-- Avoid unrelated business logic, extra UI, or environment-specific setup.
