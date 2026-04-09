@@ -4,7 +4,7 @@
   "description": "Minimal Mastra bug reproduction repository",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"No automated tests configured for this reproduction\"",
+    "test": "vitest run",
     "dev": "mastra dev",
     "build": "mastra build",
     "start": "mastra start"
@@ -23,6 +23,7 @@
   "devDependencies": {
     "@types/node": "^25.5.2",
     "mastra": "^1.5.0",
-    "typescript": "^6.0.2"
+    "typescript": "^6.0.2",
+    "vitest": "^4.1.4"
   }
 }
