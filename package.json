@@ -1,0 +1,28 @@
+{
+  "name": "mastra-bug-agent-tools",
+  "version": "1.0.0",
+  "description": "Minimal Mastra bug reproduction repository",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"No automated tests configured for this reproduction\"",
+    "dev": "mastra dev",
+    "build": "mastra build",
+    "start": "mastra start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "dependencies": {
+    "@mastra/core": "^1.24.1",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.2",
+    "mastra": "^1.5.0",
+    "typescript": "^6.0.2"
+  }
+}
